@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Welcome</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" media="all" data-turbolinks-track="true" type="text/css"
+          href="../../assets/bootstrap.css"/>
+</head>
+<body>
+<div id="wrap-everything">
+    <p></p>
+    <div class="registration-page" style="margin-top: 30px">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <p>Transaction History</p>
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Transaction Type</th>
+                    <th scope="col">Transaction Status</th>
+                    <th scope="col">Creation Date</th>
+                    <th scope="col">Transaction Sum</th>
+                    <th scope="col">Cancel Transaction if pending</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="transaction: ${trSet}">
+                    <td th:text="${transaction.TransactionType}" />
+                    <td th:text="${transaction.TransactionStatus}" />
+                    <td th:text="${transaction.CreatedAt}" />
+                    <td th:text="${transaction.TransactionSum}" />
+                    <form accept-charset="UTF-8" class="registration-form onlyForm" method="post" th:object="${transaction}">
+                        <td th:if="${transaction.TransactionStatus} == 'pending'">
+                            <input type='hidden' name="transaction_id" th:value="${transaction.Id}"/>
+                            <input type='hidden' name="user_id" th:value="${user.Id}"/>
+                            <button style="background-color: #8A2BE2; color: white; width: 35%;
+                                               padding-bottom: 10px; padding-top: 10px; font-size: 18px;
+                                                border-radius: 9px; border-color: #8A2BE2"
+                                    class="button secondary radius expand">Cancel Transaction</button>
+                        </td>
+                    </form>
+                    <br>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
