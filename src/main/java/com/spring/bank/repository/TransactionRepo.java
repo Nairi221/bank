@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface TransactionDAO extends JpaRepository<Transaction, Integer> {
+public interface TransactionRepo extends JpaRepository<Transaction, Integer> {
     List<Transaction> findAllByTransactionStatus(String transactionStatus);
 
     Transaction findByid(Integer id);
